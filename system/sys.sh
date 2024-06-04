@@ -14,19 +14,19 @@ sudo pacman -S mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-load
 
 sudo pacman -S wofi pavucontrol waybar grim slurp mako alacritty pcmanfm-gtk3 transmission-qt wl-clipboard gammastep python-pywal gsimplecal --needed;
 
-cp -r ~/Karch/system/.config ~/.config/;
+cp -r ~/karch/system/.config ~/.config/;
 
-cp -r ~/Karch/.gtkrc-2.0 ~/.gtkrc-2.0 && cp -r ~/Karch/.vim ~/.vim;
+cp -r ~/karch/.gtkrc-2.0 ~/.gtkrc-2.0;
 
-cp -r ~/Karch/.zshrc ~/.zshrc && sudo cp -r ~/Karch/zsh/plugins /usr/share/zsh;
+cp -r ~/karch/.zshrc ~/.zshrc && sudo cp -r ~/karch/zsh/plugins /usr/share/zsh;
 
-sudo pacman -S zram-generator && sudo cp -r ~/Karch/system/zram-generator.conf /etc/systemd/;
+sudo pacman -S zram-generator && sudo cp -r ~/karch/system/zram-generator.conf /etc/systemd/;
 
-sudo cp -r ~/Karch/system/system.conf /etc/systemd/system.conf
+sudo cp -r ~/karch/system/system.conf /etc/systemd/system.conf
 
-sudo cp -r ~/Karch/system/user.conf /etc/systemd/user.conf
+sudo cp -r ~/karch/system/user.conf /etc/systemd/user.conf
 
-sudo cp -r ~/Karch/system/limits.conf /etc/security/limits.conf
+sudo cp -r ~/karch/system/limits.conf /etc/security/limits.conf
 
 sudo systemctl daemon-reload && sudo systemctl start systemd-zram-setup@zram0.service;
 
