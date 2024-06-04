@@ -4,5 +4,5 @@ sudo pacman -S gdb ninja gcc cmake meson libxcb xcb-proto xcb-util xcb-util-keys
 git clone --recursive https://github.com/hyprwm/Hyprland && cd Hyprland;
 make all && sudo make install;
 sudo pacman -S swaybg polkit-kde-agent sddm && sudo systemctl enable sddm.service;
-cp -r ~/Karch/wm/hypr/hypr ~/.config/
+cp -r ~/karch/wm/hypr/hypr ~/.config/
 sudo rm -r ~/Hyprland && echo "Hypr WoRk NiCe :)"
