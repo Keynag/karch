@@ -1,0 +1,15 @@
+[warning]
+edge=top
+font=Hack Nerd Font Bold 14px
+background=9966CC
+button-background=9999FF
+border=CCCCCC
+border-bottom=9999CC
+border-bottom-size=3px
+text=000033
+button-text=000033
+button-border-size=1px
+button-gap=13px
+button-margin-right=3px
+button-padding=3px
+message-padding=6px

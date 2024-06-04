@@ -1,0 +1,372 @@
+#---[MySway(fx)73]---#
+
+include "$HOME/.cache/wal/colors-sway"
+
+#--[Клавишка Super]
+set $mod Mod4
+
+#--{numlock}
+input * xkb_numlock enabled
+
+#--{раскладка клавы}
+input * {
+    xkb_layout us,ru
+    xkb_options grp:win_space_toggle
+    repeat_delay 500
+    repeat_rate 50
+}
+
+#-{Список устройств: swaymsg -t get_inputs}
+
+#############################################################
+
+#--[Разрешение экрана]
+
+output "AOC 2590G4 0x0000098D" {
+    mode  1920x1080@144.001Hz
+    pos 0 0
+    transform normal
+    scale 1.0
+    scale_filter nearest
+    adaptive_sync off
+    dpms on
+}
+
+output DP-3 {
+    mode  1280x1024@60.02Hz
+    pos 1920 0
+    transform 270
+    scale 1.0
+    scale_filter nearest
+    adaptive_sync off
+    dpms on
+}
+
+workspace 1 output DP-2
+workspace 2 output DP-2
+workspace 3 output DP-2
+workspace 4 output DP-3
+workspace 8 output DP-3
+
+
+#-{swaymsg -t get_outputs}
+
+#############################################################
+
+
+#---[Приложения]---#
+
+#swaymsg -t get_tree | grep "app_id"
+
+
+# -[Авотзапуск]-
+exec mako
+exec gammastep
+exec autotiling
+exec /usr/bin/lxpolkit
+exec nm-applet --indicator
+exec corectrl --minimize-systray
+#exec telegram-desktop -startintray
+#exec /home/keyn/.config/sway/scripts/xdg.sh
+exec wl-paste --type text --watch cliphist store
+exec dbus-update-activation-environment --systemd --all
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+
+# -[Запуск на определенном воркспейсе]-
+assign [app_id="firefox"] workspace 1
+assign [app_id="steam"] workspace 2
+assign [app_id="heroic"] workspace 2
+assign [app_id="lutris"] workspace 2
+assign [app_id="Battle.net"] workspace 2
+
+assign [app_id="pcmanfm"] workspace 3
+assign [app_id="btop"] workspace 4
+
+
+# -[Запуск в фокусе]-
+for_window [app_id="pavucontrol"] focus
+for_window [app_id="nm-connection-e"] focus
+for_window [app_id="pcmanfm"] focus
+for_window [app_id="firefox"] focus
+#for_window [app_id="codium"] focus
+for_window [app_id="org.telegram.desktop"] focus
+for_window [app_id="steam"] focus
+for_window [app_id="lutris"] focus
+
+
+# -[Запуск в плавающем режиме]-
+for_window [app_id="transmission-qt"] floating enable
+for_window [app_id="mpv"] floating enable
+for_window [app_id="org.telegram.desktop"] floating enable
+for_window [app_id="org.gnome.FileRoller"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="nm-connection-e"] floating enable
+for_window [app_id="audacious"] floating enable
+for_window [app_id="bleachbit"] floating enable
+for_window [app_id="tor-browser"] floating enable
+for_window [app_id="codium"] floating enable
+for_window [app_id="gammastep-indicator"] floating enable
+for_window [app_id="feh"] floating enable
+for_window [app_id="timeshift-gtk"] floating enable
+for_window [app_id="gparted"] floating enable
+for_window [app_id="corectrl"] floating enable
+for_window [app_id="org.gnome.Calculator"] floating enable
+for_window [app_id="lutris"] floating enable
+for_window [app_id="steam"] floating enable
+for_window [app_id="steam-runtime"] floating enable
+for_window [app_id="steamwebhelper"] floating enable
+for_window [app_id="yad"] floating enable
+for_window [app_id="zenity"] floating enable
+for_window [app_id="Battle.net"] floating enable
+for_window [app_id="tlauncher"] floating enable
+for_window [app_id="vesktop"] floating enable
+for_window [app_id="protonup-qt"] floating enable
+for_window [app_id="rpcs3"] floating enable
+for_window [app_id="wine"] floating enable
+for_window [app_id="heroic"] floating enable
+
+
+#for_window [window_type="properties"] floating enable
+#for_window [window_role="properties"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_role="dialog"] floating enable
+
+#for_window [window_type="null"] floating enable
+for_window [window_role="null"] floating enable
+
+
+#assign [class="steam"] -> 1
+
+
+# -[Переменные] vi-
+set $left h
+set $down j
+set $up k
+set $right l
+
+# -[терминал]-
+set $term alacritty
+
+# -[wofi]-
+set $menu wofi --show drun -I
+
+#############################################################
+
+
+#---[ЭТО РАБОТАЕТ ТОЛЬКО В SWAYFX]---#
+
+# -[Скругления]-
+#corner_radius 1
+#smart_corner_radius enable
+
+# -[Блюр]-
+blur enable
+blur_xray disable
+blur_passes 2
+blur_radius 2
+
+#############################################################
+
+
+#---[Декорация окон]---#
+
+# -[Гапсы]-
+smart_gaps off
+gaps inner 3
+gaps outer 6
+
+# -[Толщина рамок для обычных и плавающих окон]-
+default_border pixel 1
+default_floating_border none
+
+# -[Размер рамок окон]-
+for_window [tiling] border pixel 2
+for_window [floating] border none
+
+# -[Отключение рамки если открыто одно окно]-
+smart_borders enable
+
+#############################################################
+
+
+#---[Украшательства]---#
+
+# -[Обои]-
+#output * bg ~/wallpapers/corgi.png fill
+#{stretch,fit,fill,center,tile,solid_color}
+
+output * bg $wallpaper fill
+
+
+# -[Шрифт (по ходу для заголовков)]-
+font pango:JetBrainsMono 12
+
+# -[Курсор]-
+seat seat0 xcursor_theme "Breeze_Snow"
+exec_always gsettings set org.gnome.desktop.interface cursor-theme "Breeze_Snow"
+
+
+# -[Курсоры, темы, иконки]-
+bindsym Ctrl+Alt+p exec ~/.config/sway/themes/purma.conf
+bindsym Ctrl+Alt+o exec ~/.config/sway/themes/orange.conf
+
+
+# -[Цвета рамок]-
+client.focused  $color11 $color11 $color11 $color11
+client.unfocused $color8 $color8 $color8 $color8
+
+#############################################################
+
+
+#---[Хоткеи]---#
+
+# -[Приложения]-
+bindsym $mod+Return exec $term
+bindsym --to-code {
+$mod+f exec firefox
+#$mod+v exec /usr/bin/codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland
+$mod+k exec lutris
+$mod+s exec steam-runtime
+$mod+t exec telegram-desktop
+$mod+a exec audacious
+$mod+h exec heroic
+$mod+p exec rpcs3
+$mod+l exec /usr/bin/vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=VaapiVideoDecoder
+$mod+g exec pcmanfm
+$mod+d exec $menu
+$mod+c exec /home/keyn/.config/sway/scripts/wal.sh
+Ctrl+Shift+Escape exec alacritty -e btop
+$mod+o exec obs
+$mod+F12 exec /home/keyn/.config/sway/scripts/wpd.sh
+}
+
+# -[Управление аудио]-
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 0.99 @DEFAULT_AUDIO_SINK@ 1%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK
+#bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+
+# -[Перезагрузить sway]-
+bindsym --to-code $mod+Shift+r reload
+
+# -[Выход из sway]-
+bindsym --to-code $mod+M exec swaynag -c ~/.config/sway/swaynag/config -t warning -m 'Уверен?' -B 'Да' 'swaymsg exit'
+
+
+# --{Окна}--
+
+# -{Закрыть}-
+bindsym --to-code Ctrl+q kill
+# -{Управление окном с зажатой клавишей mod}-
+floating_modifier $mod normal
+# -{Сделать окно плавающим}-
+bindsym --to-code $mod+b floating toggle
+# -{Фулскрин}-
+bindsym --to-code $mod+Shift+f fullscreen
+# -{Переключение между плавающими и тайловыми окнами}-
+#bindsym $mod+Shift+Ctrl focus mode_toggle
+# -{Выделить все окна}-
+bindsym --to-code $mod+Ctrl+a focus parent
+# -{Скриншоты}-
+bindsym $mod+Print exec grim ~/screen-"$(date +%s)".png
+bindsym Print exec grim -g "$(slurp)" ~/screen-"$(date +%s)".png
+
+# -{Перемещение фокуса}-
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# -{Или $mod+[up|down|left|right]}-
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# -{Перемещенние окна}-
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# -{Или $mod+[up|down|left|right]}
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# -{Переход на другой workspace}-
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# -{Перемещение окна на другой workspace}-
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# -{Позиция нового окна}
+bindsym $mod+Shift+b splith
+bindsym $mod+Shift+v splitv
+
+# -{Изменяем размер окна}-
+bindsym --to-code {
+$mod+r mode "resize"
+}
+
+# -Ресайз через переменные-
+mode "resize" {
+# left will shrink the containers width
+# right will grow the containers width
+# up will shrink the containers height
+# down will grow the containers height
+bindsym $left resize shrink width 10px
+bindsym $up resize grow height 10px
+bindsym $down resize shrink height 10px
+bindsym $right resize grow width 10px
+# -Ресайз через стрелки-
+bindsym Left resize shrink width 10px
+bindsym Up resize grow height 10px
+bindsym Down resize shrink height 10px
+bindsym Right resize grow width 10px
+# Применить/Отменить ресайз
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+# -[Выключение/Перезагрузка]
+bindsym --to-code {
+$mod+Ctrl+p exec shutdown -a now
+$mod+Ctrl+r exec shutdown -r now
+}
+
+#############################################################
+
+#[Бар]
+bar {
+    swaybar_command waybar
+}
+
+#ПОДКЛЮЧЕНИЕ ВСЕХ ФАЙЛОВ ИЗ ДИРЕКТОРИИ С ДЕФОЛТНЫМ КОНФИГОМ
+include /etc/sway/config.d/*
