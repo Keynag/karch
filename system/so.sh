@@ -37,7 +37,9 @@ sudo cp -r ~/karch/system/geoclue.conf /etc/geoclue/geoclue.conf;
 
 sudo systemctl mask NetworkManager-wait-online.service;
 
-cd ~ && sudo rm -r ~/tools/ && pacman -Syyuu;
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/bobafetthotmail/refind-theme-regular/master/install.sh)"
+
+cd ~ && sudo rm -r ~/tools/ && sudo pacman -Syyuu;
 
 echo "ALL GOOD KEYN73 :)" && shutdown -r
 
