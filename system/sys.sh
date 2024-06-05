@@ -14,7 +14,7 @@ sudo pacman -S mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-load
 
 sudo pacman -S wofi pavucontrol waybar grim slurp mako alacritty pcmanfm-gtk3 transmission-qt wl-clipboard gammastep python-pywal gsimplecal --needed;
 
-cp -r ~/karch/system/.config ~/.config/;
+#cp -r ~/karch/system/.config ~/.config/;
 
 cp -r ~/karch/.gtkrc-2.0 ~/.gtkrc-2.0;
 
@@ -34,7 +34,7 @@ sudo pacman -S irqbalance && sudo systemctl enable --now irqbalance;
 
 paru -S vesktop wob && paru -S pywal-16-colors;
 
-echo "GOOD JOB KEYN73 :)" && shutdown -r now
+echo "GOOD JOB KEYN73 :)" && shutdown -r
 
 
 
