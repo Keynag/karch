@@ -2,7 +2,7 @@
 
 sudo pacman -Syu;
 
-sudo pacman -S xorg-xwayland wayland wlroots lib32-wayland wayland-protocols pcre2 json-c pango cairo gdk-pixbuf2 meson zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting qt5-wayland qt6-wayland pango --needed;
+sudo pacman -S xorg-xwayland wayland wlroots lib32-wayland wayland-protocols pcre2 json-c pango cairo gdk-pixbuf2 meson zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting qt5-wayland qt6-wayland pango mesa-utils vulkan-tools --needed;
 
 sudo pacman -S noto-fonts ttf-dejavu ttf-droid ttf-liberation ttf-hack-nerd ttf-jetbrains-mono awesome-terminal-fonts --needed;
 
@@ -16,7 +16,7 @@ sudo pacman -S wofi pavucontrol waybar grim slurp mako alacritty pcmanfm-gtk3 tr
 
 #cp -r ~/karch/system/.config ~/.config/;
 
-cp -r ~/karch/.gtkrc-2.0 ~/.gtkrc-2.0;
+cp -r ~/karch/.gtkrc-2.0 ~/.gtkrc-2.0
 
 cp -r ~/karch/.zshrc ~/.zshrc && sudo cp -r ~/karch/zsh/plugins /usr/share/zsh;
 
