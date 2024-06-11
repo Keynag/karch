@@ -2,7 +2,7 @@
 
 sudo pacman -Syu;
 
-sudo pacman -S xorg-xwayland wayland wlroots lib32-wayland wayland-protocols pcre2 json-c pango cairo gdk-pixbuf2 meson zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting qt5-wayland qt6-wayland pango mesa-utils vulkan-tools --needed;
+sudo pacman -S xorg-xwayland wayland wlroots lib32-wayland wayland-protocols pcre2 json-c pango cairo gdk-pixbuf2 meson zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting qt5-wayland qt6-wayland pango mesa-utils vulkan-tools vulkan-validation-layers --needed;
 
 sudo pacman -S noto-fonts ttf-dejavu ttf-droid ttf-liberation ttf-hack-nerd ttf-jetbrains-mono awesome-terminal-fonts --needed;
 
